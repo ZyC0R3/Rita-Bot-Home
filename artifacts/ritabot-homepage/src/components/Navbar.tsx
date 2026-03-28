@@ -4,7 +4,8 @@ import { useState, useEffect } from "react";
 const navLinks = [
   { name: "Features", href: "#features" },
   { name: "Pricing", href: "#pricing" },
-  { name: "Docs", href: "https://docs.ritabot.gg" },
+  { name: "Docs", href: "https://docs.ritabot.gg/ritabot-docs" },
+  { name: "Dashboard", href: "https://dashboard.ritabot.gg/" },
   { name: "Discord", href: "https://discord.gg/ritabot" },
 ];
 
