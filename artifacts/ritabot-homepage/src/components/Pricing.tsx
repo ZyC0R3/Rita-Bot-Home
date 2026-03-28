@@ -18,7 +18,7 @@ const plans = [
   },
   {
     name: "Casual",
-    price: "$6",
+    price: "$6.99",
     period: "/mo",
     description: "For active communities needing automation.",
     tasks: "100",
