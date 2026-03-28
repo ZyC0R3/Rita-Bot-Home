@@ -79,7 +79,7 @@ const plans = [
 ];
 
 // Reordering array to put Pro in middle visually
-const displayPlans = [plans[0], plans[1], plans[2], plans[3], plans[4]];
+const displayPlans = [plans[0], plans[1], plans[3], plans[2], plans[4]];
 
 export function Pricing() {
   return (
