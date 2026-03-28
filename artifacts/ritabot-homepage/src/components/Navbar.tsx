@@ -6,7 +6,7 @@ const navLinks = [
   { name: "Pricing", href: "#pricing" },
   { name: "Docs", href: "https://docs.ritabot.gg/ritabot-docs" },
   { name: "Dashboard", href: "https://dashboard.ritabot.gg/" },
-  { name: "Discord", href: "https://discord.gg/ritabot" },
+  { name: "Discord", href: "https://discord.com/invite/yQg3MtHnm5" },
 ];
 
 export function Navbar() {

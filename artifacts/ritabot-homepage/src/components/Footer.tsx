@@ -23,7 +23,7 @@ export function Footer() {
           <a href="https://dashboard.ritabot.gg" className="text-sm font-medium text-muted-foreground hover:text-white transition-colors">
             Dashboard
           </a>
-          <a href="https://discord.gg/ritabot" className="text-sm font-medium text-muted-foreground hover:text-white transition-colors">
+          <a href="https://discord.com/invite/yQg3MtHnm5" className="text-sm font-medium text-muted-foreground hover:text-white transition-colors">
             Support Server
           </a>
           <a href="https://ritabot.gg/invite" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
