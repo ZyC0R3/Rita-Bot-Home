@@ -34,7 +34,7 @@ jobs:
         run: pnpm --filter @workspace/ritabot-homepage run build
         env:
           PORT: 3000
-          BASE_PATH: /
+          BASE_PATH: /Rita-Bot-Home/
           NODE_ENV: production
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
