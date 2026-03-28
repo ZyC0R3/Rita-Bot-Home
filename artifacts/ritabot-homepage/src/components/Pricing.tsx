@@ -148,10 +148,6 @@ export function Pricing() {
             </div>
           ))}
         </div>
-        
-        <div className="mt-12 text-center text-sm text-muted-foreground p-6 bg-rose-500/10 border border-rose-500/20 rounded-2xl max-w-3xl mx-auto">
-          ⚠️ <strong className="text-rose-400">Note:</strong> You must remain in the RitaBot Discord Support Server to maintain an active subscription.
-        </div>
       </div>
     </section>
   );
