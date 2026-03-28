@@ -22,7 +22,7 @@ export function Cta() {
                 className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-lg bg-primary text-white hover:bg-primary/90 hover:scale-105 transition-all duration-200 shadow-xl shadow-primary/20"
               >
                 <MessageSquarePlus className="w-5 h-5" />
-                Add to Discord Now
+                Get RITA Now
               </a>
               <a
                 href="https://dashboard.ritabot.gg"
