@@ -1,4 +1,4 @@
-import { Globe, RefreshCw, Flag, Users, Webhook, Zap } from "lucide-react";
+import { Globe, RefreshCw, Flag, Users, Webhook, Zap, Command, Brain, MessageCircle } from "lucide-react";
 
 const features = [
   {
@@ -42,6 +42,27 @@ const features = [
     description: "Built for scale and speed. Rita handles high-volume active chats without breaking a sweat, ensuring conversations flow naturally.",
     color: "text-purple-400",
     bg: "bg-purple-400/10",
+  },
+  {
+    icon: Command,
+    title: "Slash Commands",
+    description: "Modern slash command interface for easy setup and management. Control translations with intuitive Discord commands.",
+    color: "text-cyan-400",
+    bg: "bg-cyan-400/10",
+  },
+  {
+    icon: Brain,
+    title: "Proprietary ML Engine",
+    description: "Backup translations powered by our proprietary Machine Learning Engine for seamless accuracy when needed.",
+    color: "text-indigo-400",
+    bg: "bg-indigo-400/10",
+  },
+  {
+    icon: MessageCircle,
+    title: "Forum and Thread Support",
+    description: "Full support for Discord Forums and Threads, translating conversations in modern Discord features.",
+    color: "text-pink-400",
+    bg: "bg-pink-400/10",
   },
 ];
 
