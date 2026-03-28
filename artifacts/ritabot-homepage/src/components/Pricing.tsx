@@ -22,9 +22,9 @@ const plans = [
     description: "For active communities needing automation.",
     tasks: "100",
     features: [
+      "All Reaction Features",
       "100 Auto-Translation Tasks",
-      "Unlimited Individual Translations",
-      "Group Cross-Channel Chat"
+      "Increased Character Limit"
     ],
     highlighted: false,
     cta: "Subscribe"
@@ -36,9 +36,9 @@ const plans = [
     description: "The sweet spot for large, diverse communities.",
     tasks: "350",
     features: [
+      "All Tinkerer Features",
       "350 Auto-Translation Tasks",
-      "All Casual Features Included",
-      "Customizable Prefix"
+      "Increased Character Limit"
     ],
     highlighted: true,
     cta: "Get Pro"
@@ -50,9 +50,9 @@ const plans = [
     description: "More power for growing international groups.",
     tasks: "200",
     features: [
+      "All Casual Features",
       "200 Auto-Translation Tasks",
-      "Unlimited Individual Translations",
-      "Group Cross-Channel Chat"
+      "Increased Character Limit"
     ],
     highlighted: false,
     cta: "Subscribe"
@@ -64,9 +64,10 @@ const plans = [
     description: "For massive networks and enterprise servers.",
     tasks: "550",
     features: [
+      "All Pro Features",
       "550 Auto-Translation Tasks",
-      "All Pro Features Included",
-      "Dedicated Setup Help"
+      "BITA Bot Access",
+      "Early access to Dev Features"
     ],
     highlighted: false,
     cta: "Subscribe"
@@ -142,6 +143,22 @@ export function Pricing() {
               </a>
             </div>
           ))}
+        </div>
+
+        <div className="mt-16 space-y-8 max-w-4xl mx-auto">
+          <div className="p-6 bg-card border border-white/10 rounded-2xl">
+            <h3 className="text-lg font-bold text-white mb-4">What is a Task?</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              A task is a singular channel setup for automatic channel translation. For example; 1 channel translating from english to french counts as 1 task, If you wanted to create an interchangeable setup of 10 channels (10 languages which are all connected); it would be 10 * (10-1) tasks so 90 tasks overall.
+            </p>
+          </div>
+
+          <div className="p-6 bg-card border border-white/10 rounded-2xl">
+            <h3 className="text-lg font-bold text-white mb-4">Character Limits & Soft Caps</h3>
+            <p className="text-sm text-muted-foreground leading-relaxed">
+              Each plan has a Soft Limit on the number of Google Characters they are assigned for the Google Translation API. This soft limit comes into effect for all translations. Once a user hits the assigned limit, translations will fall back to our Machine Learning (ML) Translation Engine. However, if our ML Engine is not trained in the target language or its confidence is not suitable for transaltion then it will continue to use the Google Translation API for translation. There is no Hard Limit on the number of Characters that a user can use on the Google API however after 2 Million a review may be conducted to ensure there is no abuse of service.
+            </p>
+          </div>
         </div>
       </div>
     </section>
