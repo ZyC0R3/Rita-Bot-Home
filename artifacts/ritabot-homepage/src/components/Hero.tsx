@@ -31,6 +31,15 @@ export function Hero() {
             </svg>
             <span className="text-sm font-medium text-muted-foreground">Verified on Top.gg</span>
           </a>
+          <a
+            href="https://discordforge.org/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/60 dark:bg-white/5 border border-border dark:border-white/10 backdrop-blur-sm hover:bg-muted dark:hover:bg-white/10 transition-colors"
+          >
+            <img src={`${import.meta.env.BASE_URL}images/discordforge.png`} alt="DiscordForge" className="w-4 h-4 rounded-sm" />
+            <span className="text-sm font-medium text-muted-foreground">Partner with DiscordForge</span>
+          </a>
         </div>
         
         <h1 className="text-5xl md:text-7xl font-display font-extrabold text-foreground mb-6 leading-[1.1] animate-in fade-in slide-in-from-bottom-6 duration-700 delay-100 fill-mode-both">
