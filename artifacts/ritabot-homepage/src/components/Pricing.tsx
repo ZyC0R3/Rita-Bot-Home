@@ -3,7 +3,8 @@ import { Check } from "lucide-react";
 const plans = [
   {
     name: "Reaction",
-    price: "Free",
+    price: "$2.99",
+    period: "/mo",
     description: "Perfect for casual use and small servers.",
     tasks: "0",
     features: [
