@@ -7,7 +7,6 @@ const navLinks = [
   { name: "Docs", href: "https://docs.ritabot.gg/ritabot-docs" },
   { name: "Dashboard", href: "https://dashboard.ritabot.gg/" },
   { name: "Support", href: "https://discord.com/invite/mgNR64R" },
-  { name: "Discord", href: "https://discord.com/invite/yQg3MtHnm5" },
 ];
 
 export function Navbar() {
@@ -63,7 +62,7 @@ export function Navbar() {
               href="https://ritabot.gg/invite"
               className="px-5 py-2.5 rounded-xl font-semibold text-sm bg-primary text-white hover:bg-primary/90 shadow-[0_0_20px_rgba(88,101,242,0.3)] hover:shadow-[0_0_25px_rgba(88,101,242,0.5)] hover:-translate-y-0.5 transition-all duration-200"
             >
-              Add to Server
+              Get RITA Now
             </a>
           </div>
 
@@ -98,7 +97,7 @@ export function Navbar() {
                 href="https://ritabot.gg/invite"
                 className="block w-full text-center px-5 py-3 rounded-xl font-semibold bg-primary text-white hover:bg-primary/90 transition-colors"
               >
-                Add to Server
+                Get RITA Now
               </a>
             </div>
           </div>
