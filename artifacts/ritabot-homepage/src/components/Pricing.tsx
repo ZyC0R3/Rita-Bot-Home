@@ -33,7 +33,7 @@ const plans = [
   },
   {
     name: "Pro",
-    price: "$15",
+    price: "$15.99",
     period: "/mo",
     description: "The sweet spot for large, diverse communities.",
     tasks: "350",
@@ -48,7 +48,7 @@ const plans = [
   },
   {
     name: "Tinkerer",
-    price: "$9",
+    price: "$10.99",
     period: "/mo",
     description: "More power for growing international groups.",
     tasks: "200",
@@ -63,7 +63,7 @@ const plans = [
   },
   {
     name: "Ultima",
-    price: "$21",
+    price: "$21.99",
     period: "/mo",
     description: "For massive networks and enterprise servers.",
     tasks: "550",
