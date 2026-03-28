@@ -1,5 +1,15 @@
 import { Menu, X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
+
+const logoFiles = [
+  "logo-icon.png",
+];
+
+function getRandomLogo(): string {
+  const base = import.meta.env.BASE_URL;
+  const file = logoFiles[Math.floor(Math.random() * logoFiles.length)];
+  return `${base}images/${file}`;
+}
 
 const navLinks = [
   { name: "Features", href: "#features" },
@@ -12,6 +22,7 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const logo = useMemo(() => getRandomLogo(), []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -34,7 +45,7 @@ export function Navbar() {
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-3">
             <img
-              src={`${import.meta.env.BASE_URL}images/logo-icon.png`}
+              src={logo}
               alt="RitaBot Logo"
               className="w-10 h-10 object-contain"
             />
