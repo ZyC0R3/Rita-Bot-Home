@@ -26,8 +26,7 @@ export default function Partners() {
               Our Partners
             </h1>
             <p className="text-lg text-muted-foreground">
-              We're proud to work with these amazing platforms and communities
-              that share our mission of improving the Discord ecosystem.
+              We're proud to partner with platforms and communities that share our vision of breaking language barriers and improving communication through translation across Discord.
             </p>
           </div>
 
