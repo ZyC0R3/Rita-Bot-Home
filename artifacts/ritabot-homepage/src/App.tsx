@@ -2,17 +2,12 @@ import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
 import { TooltipProvider } from "@/components/ui/tooltip";
-import { createContext, useEffect } from "react";
+import { useEffect } from "react";
 import { useTheme } from "@/hooks/use-theme";
+import { ThemeContext } from "@/hooks/theme-context";
 
 import Home from "@/pages/Home";
 import NotFound from "@/pages/not-found";
-
-export const ThemeContext = createContext<{
-  theme: "light" | "dark";
-  isDark: boolean;
-  toggleTheme: () => void;
-}>({ theme: "dark", isDark: true, toggleTheme: () => {} });
 
 const queryClient = new QueryClient();
 

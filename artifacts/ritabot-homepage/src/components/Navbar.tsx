@@ -1,7 +1,7 @@
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useState, useEffect, useMemo, useContext } from "react";
 import RitaLogo from "@/assets/logo.svg?react";
-import { ThemeContext } from "@/App";
+import { ThemeContext } from "@/hooks/theme-context";
 
 const darkLogoColors = [
   "#5865F2",
