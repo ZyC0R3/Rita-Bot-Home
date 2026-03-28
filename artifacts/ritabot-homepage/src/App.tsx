@@ -7,10 +7,6 @@ import { useEffect } from "react";
 import Home from "@/pages/Home";
 import NotFound from "@/pages/not-found";
 
-const logoFiles = [
-  "logo-icon.png",
-];
-
 // Initialize empty query client as we have no backend but standard template expects it
 const queryClient = new QueryClient();
 
@@ -26,12 +22,12 @@ function Router() {
 function App() {
   useEffect(() => {
     const base = import.meta.env.BASE_URL;
-    const file = logoFiles[Math.floor(Math.random() * logoFiles.length)];
-    const faviconUrl = `${base}images/${file}`;
+    const faviconUrl = `${base}images/logo-white.svg`;
     const link =
       (document.querySelector("link[rel~='icon']") as HTMLLinkElement) ||
       document.createElement("link");
     link.rel = "icon";
+    link.type = "image/svg+xml";
     link.href = faviconUrl;
     document.head.appendChild(link);
   }, []);

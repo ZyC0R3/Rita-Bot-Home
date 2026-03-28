@@ -1,15 +1,19 @@
 import { Menu, X } from "lucide-react";
 import { useState, useEffect, useMemo } from "react";
+import RitaLogo from "@/assets/logo.svg?react";
 
-const logoFiles = [
-  "logo-icon.png",
+const logoColors = [
+  "#5865F2",
+  "#57F287",
+  "#FEE75C",
+  "#EB459E",
+  "#ED4245",
+  "#00AFF4",
+  "#FF7043",
+  "#AB47BC",
+  "#26C6DA",
+  "#FFFFFF",
 ];
-
-function getRandomLogo(): string {
-  const base = import.meta.env.BASE_URL;
-  const file = logoFiles[Math.floor(Math.random() * logoFiles.length)];
-  return `${base}images/${file}`;
-}
 
 const navLinks = [
   { name: "Features", href: "#features" },
@@ -22,12 +26,13 @@ const navLinks = [
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const logo = useMemo(() => getRandomLogo(), []);
+  const logoColor = useMemo(
+    () => logoColors[Math.floor(Math.random() * logoColors.length)],
+    [],
+  );
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
-    };
+    const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -44,10 +49,10 @@ export function Navbar() {
         <div className="flex items-center justify-between h-20">
           {/* Logo */}
           <div className="flex-shrink-0 flex items-center gap-3">
-            <img
-              src={logo}
-              alt="RitaBot Logo"
-              className="w-10 h-10 object-contain"
+            <RitaLogo
+              aria-label="RitaBot Logo"
+              className="w-10 h-10"
+              style={{ color: logoColor }}
             />
             <span className="font-display font-bold text-2xl tracking-tight text-white">
               RitaBot
