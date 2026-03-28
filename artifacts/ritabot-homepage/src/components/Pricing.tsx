@@ -10,7 +10,6 @@ const plans = [
     features: [
       "Unlimited Flag Reaction Translations",
       "Google Translate API",
-      "Standard Support",
       "No Auto-translation tasks"
     ],
     highlighted: false,
@@ -25,7 +24,6 @@ const plans = [
     features: [
       "100 Auto-Translation Tasks",
       "Unlimited Individual Translations",
-      "Webhook Support",
       "Group Cross-Channel Chat"
     ],
     highlighted: false,
@@ -39,7 +37,6 @@ const plans = [
     tasks: "350",
     features: [
       "350 Auto-Translation Tasks",
-      "Priority Bot Support",
       "All Casual Features Included",
       "Customizable Prefix"
     ],
@@ -55,7 +52,6 @@ const plans = [
     features: [
       "200 Auto-Translation Tasks",
       "Unlimited Individual Translations",
-      "Webhook Support",
       "Group Cross-Channel Chat"
     ],
     highlighted: false,
@@ -69,7 +65,6 @@ const plans = [
     tasks: "550",
     features: [
       "550 Auto-Translation Tasks",
-      "Highest Priority Support",
       "All Pro Features Included",
       "Dedicated Setup Help"
     ],
