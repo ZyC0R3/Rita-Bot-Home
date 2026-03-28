@@ -38,7 +38,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-muted/60 dark:bg-white/5 border border-border dark:border-white/10 backdrop-blur-sm hover:bg-muted dark:hover:bg-white/10 transition-colors"
           >
             <img src={`${import.meta.env.BASE_URL}images/discordforge.png`} alt="DiscordForge" className="w-4 h-4 rounded-sm" />
-            <span className="text-sm font-medium text-muted-foreground">Partner with DiscordForge</span>
+            <span className="text-sm font-medium text-muted-foreground">Partnered with DiscordForge</span>
           </a>
         </div>
         
