@@ -13,7 +13,7 @@ const plans = [
       "No Auto-translation tasks"
     ],
     highlighted: false,
-    cta: "Add to Server"
+    cta: "Get Reaction"
   },
   {
     name: "Casual",
@@ -27,7 +27,7 @@ const plans = [
       "Increased Character Limit"
     ],
     highlighted: false,
-    cta: "Subscribe"
+    cta: "Get Casual"
   },
   {
     name: "Pro",
@@ -55,7 +55,7 @@ const plans = [
       "Increased Character Limit"
     ],
     highlighted: false,
-    cta: "Subscribe"
+    cta: "Get Tinkerer"
   },
   {
     name: "Ultima",
@@ -70,7 +70,7 @@ const plans = [
       "Early access to Dev Features"
     ],
     highlighted: false,
-    cta: "Subscribe"
+    cta: "Get Ultima"
   }
 ];
 
