@@ -122,7 +122,7 @@ function TrialModal({ open, onClose }: { open: boolean; onClose: () => void }) {
           </p>
           <div className="flex gap-3 justify-center">
             <a
-              href="https://ritabot.gg/invite"
+              href="https://discord.com/invite/mgNR64R"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-200 dark:bg-white/5 text-foreground rounded-xl font-bold text-sm hover:bg-zinc-300 dark:hover:bg-white/10 transition-all duration-200"
@@ -131,7 +131,7 @@ function TrialModal({ open, onClose }: { open: boolean; onClose: () => void }) {
               Support
             </a>
             <a
-              href="https://ritabot.gg/docs"
+              href="https://docs.ritabot.gg"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-200 dark:bg-white/5 text-foreground rounded-xl font-bold text-sm hover:bg-zinc-300 dark:hover:bg-white/10 transition-all duration-200"
             >
               <BookOpen className="w-4 h-4" />
