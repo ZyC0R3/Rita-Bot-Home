@@ -172,6 +172,85 @@ function CellContent({ value }: { value: CellValue }) {
   return <span className="text-sm font-medium text-foreground">{value}</span>;
 }
 
+function MobileFeatureItem({ feature, value, sup }: { feature: string; value: CellValue; sup?: number }) {
+  return (
+    <div className="flex items-center justify-between py-2.5 border-b border-border/30 dark:border-white/5 last:border-0">
+      <span className="text-xs text-muted-foreground pr-2">
+        {feature}
+        {sup && <sup className="ml-0.5 text-primary text-[8px]">{sup}</sup>}
+      </span>
+      <span className="shrink-0 text-right">
+        {value === true ? (
+          <Check className="w-4 h-4 text-green-500" />
+        ) : value === false ? (
+          <X className="w-4 h-4 text-muted-foreground/40" />
+        ) : (
+          <span className="text-xs font-medium text-foreground">{value}</span>
+        )}
+      </span>
+    </div>
+  );
+}
+
+function MobileCard({ plan, index, onTrialClick }: { plan: typeof plans[0]; index: number; onTrialClick: () => void }) {
+  return (
+    <div
+      className={`rounded-2xl border p-5 ${
+        plan.highlighted
+          ? "border-primary/40 bg-primary/5"
+          : "border-border/50 dark:border-white/10 bg-muted/30 dark:bg-white/[0.02]"
+      }`}
+    >
+      <div className="flex items-start justify-between mb-3">
+        <div>
+          <h2 className={`text-lg font-display font-bold ${plan.highlighted ? "text-primary" : "text-foreground"}`}>
+            {plan.name}
+          </h2>
+          <p className="text-xs text-muted-foreground mt-0.5 whitespace-pre-line">{descriptions[index]}</p>
+        </div>
+        {plan.highlighted && (
+          <span className="text-[10px] font-bold uppercase bg-primary/20 text-primary px-2 py-0.5 rounded-full shrink-0">Popular</span>
+        )}
+      </div>
+
+      <div className="mb-4">
+        <span className="text-2xl font-display font-extrabold text-foreground">
+          {plan.price}
+          {plan.name === "Trial" && <sup className="ml-0.5 text-primary text-[10px]">1</sup>}
+        </span>
+        {plan.period && <span className="text-sm text-muted-foreground">{plan.period}</span>}
+        <div className="text-[11px] text-muted-foreground mt-0.5">{plan.sub}</div>
+      </div>
+
+      <div className="pt-2 border-t border-border/30 dark:border-white/5 mb-3">
+        {features.map((row) => (
+          <MobileFeatureItem key={row.feature} feature={row.feature} value={row.values[index]} sup={row.sup} />
+        ))}
+      </div>
+
+      {plan.name === "Trial" ? (
+        <button
+          onClick={onTrialClick}
+          className="w-full py-2.5 rounded-xl font-bold text-sm text-center transition-all duration-200 bg-zinc-200 dark:bg-white/5 text-foreground hover:bg-zinc-300 dark:hover:bg-white/10 cursor-pointer border border-border/50 dark:border-white/10"
+        >
+          Get Trial
+        </button>
+      ) : (
+        <a
+          href="https://dashboard.ritabot.gg"
+          className={`block w-full py-2.5 rounded-xl font-bold text-sm text-center transition-all duration-200 ${
+            plan.highlighted
+              ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
+              : "bg-zinc-200 dark:bg-white/5 text-foreground hover:bg-zinc-300 dark:hover:bg-white/10"
+          }`}
+        >
+          Get {plan.name}
+        </a>
+      )}
+    </div>
+  );
+}
+
 export default function Compare() {
   const [trialModalOpen, setTrialModalOpen] = useState(false);
 
@@ -190,7 +269,13 @@ export default function Compare() {
             </p>
           </div>
 
-          <div className="overflow-x-auto -mx-4 px-4">
+          <div className="md:hidden space-y-4">
+            {plans.map((plan, i) => (
+              <MobileCard key={plan.name} plan={plan} index={i} onTrialClick={() => setTrialModalOpen(true)} />
+            ))}
+          </div>
+
+          <div className="hidden md:block overflow-x-auto -mx-4 px-4">
             <table className="w-full min-w-[900px] border-collapse">
               <thead>
                 <tr>
