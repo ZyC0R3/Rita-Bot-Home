@@ -15,10 +15,10 @@ export function Footer() {
         </div>
 
         <nav className="flex flex-wrap justify-center gap-6 md:gap-8">
-          <a href="https://docs.ritabot.gg" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <a href="https://docs.ritabot.gg" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Documentation
           </a>
-          <a href="https://dashboard.ritabot.gg" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+          <a href="https://dashboard.ritabot.gg" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Dashboard
           </a>
           <a href="https://discord.com/invite/yQg3MtHnm5" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">

@@ -132,8 +132,6 @@ function TrialModal({ open, onClose }: { open: boolean; onClose: () => void }) {
             </a>
             <a
               href="https://ritabot.gg/docs"
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-200 dark:bg-white/5 text-foreground rounded-xl font-bold text-sm hover:bg-zinc-300 dark:hover:bg-white/10 transition-all duration-200"
             >
               <BookOpen className="w-4 h-4" />
@@ -254,8 +252,6 @@ export default function Compare() {
                       ) : (
                         <a
                           href="https://dashboard.ritabot.gg"
-                          target="_blank"
-                          rel="noopener noreferrer"
                           className={`inline-block w-full py-3 rounded-xl font-bold text-sm text-center transition-all duration-200 ${
                             plan.highlighted
                               ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"

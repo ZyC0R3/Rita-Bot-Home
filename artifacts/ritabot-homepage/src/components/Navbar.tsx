@@ -30,11 +30,11 @@ const lightLogoColors = [
 ];
 
 const navLinks = [
-  { name: "Features", href: "#features" },
-  { name: "Pricing", href: "#pricing" },
-  { name: "Docs", href: "https://docs.ritabot.gg/ritabot-docs" },
-  { name: "Dashboard", href: "https://dashboard.ritabot.gg/" },
-  { name: "Support", href: "https://discord.com/invite/mgNR64R" },
+  { name: "Features", href: "#features", newTab: false },
+  { name: "Pricing", href: "#pricing", newTab: false },
+  { name: "Docs", href: "https://docs.ritabot.gg/ritabot-docs", newTab: false },
+  { name: "Dashboard", href: "https://dashboard.ritabot.gg/", newTab: false },
+  { name: "Support", href: "https://discord.com/invite/mgNR64R", newTab: true },
 ];
 
 export function Navbar() {
@@ -82,7 +82,7 @@ export function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                {...(link.newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200"
               >
                 {link.name}
@@ -133,7 +133,7 @@ export function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                {...(link.href.startsWith("http") ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                {...(link.newTab ? { target: "_blank", rel: "noopener noreferrer" } : {})}
                 onClick={() => setMobileMenuOpen(false)}
                 className="block px-3 py-3 text-base font-medium text-muted-foreground hover:text-foreground hover:bg-muted/50 rounded-lg"
               >

@@ -27,8 +27,6 @@ export function Cta() {
               </a>
               <a
                 href="https://dashboard.ritabot.gg"
-                target="_blank"
-                rel="noopener noreferrer"
                 className="w-full sm:w-auto px-8 py-4 rounded-2xl font-bold text-lg text-foreground hover:bg-muted/50 dark:hover:bg-white/5 transition-colors duration-200"
               >
                 Open Dashboard

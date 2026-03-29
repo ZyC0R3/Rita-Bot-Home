@@ -66,8 +66,6 @@ export function Hero() {
           
           <a
             href="https://docs.ritabot.gg"
-            target="_blank"
-            rel="noopener noreferrer"
             className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-4 rounded-2xl font-bold text-lg text-foreground bg-muted dark:bg-secondary border border-border dark:border-white/10 hover:bg-muted/80 dark:hover:bg-white/10 hover:border-border dark:hover:border-white/20 transition-all duration-300"
           >
             <FileText className="w-5 h-5" />
