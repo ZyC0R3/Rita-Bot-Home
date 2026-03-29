@@ -1,4 +1,4 @@
-import { Check } from "lucide-react";
+import { Check, ArrowRight } from "lucide-react";
 
 const plans = [
   {
@@ -135,13 +135,28 @@ export function Pricing() {
                 className={`w-full py-3.5 rounded-xl font-bold text-sm text-center transition-all duration-200 mt-auto ${
                   plan.highlighted
                     ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 hover:shadow-primary/40"
-                    : "bg-muted dark:bg-white/5 text-foreground hover:bg-muted/80 dark:hover:bg-white/10"
+                    : "bg-zinc-200 dark:bg-white/5 text-foreground hover:bg-zinc-300 dark:hover:bg-white/10"
                 }`}
               >
                 {plan.cta}
               </a>
             </div>
           ))}
+
+          <a
+            href={`${import.meta.env.BASE_URL}compare`}
+            className="relative flex flex-col items-center justify-center rounded-3xl p-8 transition-all duration-300 bg-card border border-dashed border-border dark:border-white/10 hover:border-primary dark:hover:border-primary/50 hover:bg-primary/5 group"
+          >
+            <div className="text-center">
+              <h3 className="text-xl font-bold text-foreground mb-3">Not sure which plan?</h3>
+              <p className="text-sm text-muted-foreground mb-6">
+                Compare all available plans side by side to find the perfect fit for your server.
+              </p>
+              <span className="inline-flex items-center gap-2 text-sm font-bold text-primary group-hover:gap-3 transition-all duration-200">
+                Compare Plans <ArrowRight className="w-4 h-4" />
+              </span>
+            </div>
+          </a>
         </div>
 
         <div className="mt-16 space-y-8 max-w-4xl mx-auto">

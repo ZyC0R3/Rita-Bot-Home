@@ -15,6 +15,7 @@ type CellValue = boolean | string;
 
 interface FeatureRow {
   feature: string;
+  sup?: number;
   values: CellValue[];
 }
 
@@ -23,10 +24,10 @@ const features: FeatureRow[] = [
   { feature: "Flag Reaction Translations", values: [true, true, true, true, true, true] },
   { feature: "Unlimited Translations", values: [true, true, true, true, true, true] },
   { feature: "Channel to Channel Translations (Tasks)", values: [true, false, true, true, true, true] },
-  { feature: "Edited Message Translations", values: [true, false, true, true, true, true] },
-  { feature: "Tasks Limit", values: ["25 Tasks", "—", "100 Tasks", "200 Tasks", "350 Tasks", "550 Tasks"] },
-  { feature: "Google Characters Limit", values: ["10k Characters", "100k Characters", "200k Characters", "400k Characters", "600k Characters", "800k Characters"] },
-  { feature: "Custom Translation Engine (ML)", values: ["10k Characters", "Unlimited", "Unlimited", "Unlimited", "Unlimited", "Unlimited"] },
+  { feature: "Edited Message Translations", sup: 1, values: [true, false, true, true, true, true] },
+  { feature: "Tasks Limit", sup: 2, values: ["25 Tasks", "—", "100 Tasks", "200 Tasks", "350 Tasks", "550 Tasks"] },
+  { feature: "Google Characters Limit", sup: 3, values: ["10k Characters", "100k Characters", "200k Characters", "400k Characters", "600k Characters", "800k Characters"] },
+  { feature: "Custom Translation Engine (ML)", sup: 4, values: ["10k Characters", "Unlimited", "Unlimited", "Unlimited", "Unlimited", "Unlimited"] },
   { feature: "Early Access to Dev Features", values: [false, false, false, false, true, true] },
   { feature: "BITA Bot Access", values: [false, false, false, false, false, "BITA for 1 Server"] },
 ];
@@ -41,11 +42,10 @@ const descriptions = [
 ];
 
 const footnotes = [
-  "* The TRIAL will allow a user to try RITA for a period of one (1) month, or until limits have been reached, whichever comes first. Servers are limited to 1 TRIAL Per Server · Per User. Once Limit has been reached RITA will stop functioning for translations. Users do not need to be a Member of the RMS (RITA Management Server) to use the TRIAL.",
-  "** Edited messages will always utilise our ML Engine for translations, regardless if google soft limits are reached or not.",
-  "*** A task is a singular channel setup for automatic channel translation. For example; 1 channel translating from english to french counts as 1 task, if you wanted to create an interchangeable setup of 10 channels (10 languages which are all connected); it would be 10 × (10-1) tasks so 90 tasks overall.",
-  "**** Each plan has a Soft Limit on the number of Google Characters they are assigned for the Google Translation API. This soft limit comes into effect for all translations. Once a user hits the assigned limit, translations will fall back to our Machine Learning (ML) Translation Engine. However, if our ML Engine is not trained in the target language or its confidence is not suitable for translation then it will continue to use the Google Translation API for translation. There is no Hard Limit on the number of Characters that a user can use on the Google API however after 2 Million a review may be conducted to ensure there is no abuse of service.",
-  "***** A Hard limit for 30 Million Characters is applied to our ML Translation Engine, Once a user has reached this limit a Review of service will be conducted to ensure there is no abuse of service, this is not restriction from the service and is only intended to ensure service can be maintained.",
+  { num: 1, text: "Edited messages will always utilise our ML Engine for translations, regardless if google soft limits are reached or not." },
+  { num: 2, text: "A task is a singular channel setup for automatic channel translation. For example; 1 channel translating from english to french counts as 1 task, if you wanted to create an interchangeable setup of 10 channels (10 languages which are all connected); it would be 10 × (10-1) tasks so 90 tasks overall." },
+  { num: 3, text: "Each plan has a Soft Limit on the number of Google Characters they are assigned for the Google Translation API. This soft limit comes into effect for all translations. Once a user hits the assigned limit, translations will fall back to our Machine Learning (ML) Translation Engine. However, if our ML Engine is not trained in the target language or its confidence is not suitable for translation then it will continue to use the Google Translation API for translation. There is no Hard Limit on the number of Characters that a user can use on the Google API however after 2 Million a review may be conducted to ensure there is no abuse of service." },
+  { num: 4, text: "A Hard limit for 30 Million Characters is applied to our ML Translation Engine. Once a user has reached this limit a Review of service will be conducted to ensure there is no abuse of service, this is not restriction from the service and is only intended to ensure service can be maintained." },
 ];
 
 function CellContent({ value }: { value: CellValue }) {
@@ -54,7 +54,7 @@ function CellContent({ value }: { value: CellValue }) {
   return <span className="text-sm font-medium text-foreground">{value}</span>;
 }
 
-export default function Plans() {
+export default function Compare() {
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/30 selection:text-primary-foreground">
       <Navbar />
@@ -63,7 +63,7 @@ export default function Plans() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h1 className="text-3xl md:text-5xl font-display font-bold text-foreground mb-6">
-              Pricing Plans
+              Compare Plans
             </h1>
             <p className="text-lg text-muted-foreground">
               Compare all features across every RITA plan. Find the perfect fit for your server's translation needs.
@@ -125,6 +125,7 @@ export default function Plans() {
                   >
                     <td className="p-4 text-sm font-semibold text-foreground border-b border-border/30 dark:border-white/5">
                       {row.feature}
+                      {row.sup && <sup className="ml-0.5 text-primary text-[10px]">{row.sup}</sup>}
                     </td>
                     {row.values.map((val, colIndex) => (
                       <td
@@ -147,7 +148,7 @@ export default function Plans() {
                         className={`inline-block w-full py-3 rounded-xl font-bold text-sm text-center transition-all duration-200 ${
                           plan.highlighted
                             ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
-                            : "bg-muted dark:bg-white/5 text-foreground hover:bg-muted/80 dark:hover:bg-white/10"
+                            : "bg-zinc-200 dark:bg-white/5 text-foreground hover:bg-zinc-300 dark:hover:bg-white/10"
                         }`}
                       >
                         Get {plan.name}
@@ -159,10 +160,11 @@ export default function Plans() {
             </table>
           </div>
 
-          <div className="mt-16 max-w-5xl mx-auto space-y-3">
-            {footnotes.map((note, i) => (
-              <p key={i} className="text-xs text-muted-foreground/60 leading-relaxed">
-                {note}
+          <div className="mt-16 space-y-3 bg-muted/50 dark:bg-white/[0.02] border border-border/50 dark:border-white/5 rounded-2xl p-6 md:p-8">
+            {footnotes.map((note) => (
+              <p key={note.num} className="text-sm text-muted-foreground leading-relaxed">
+                <sup className="text-primary text-[10px] mr-1">{note.num}</sup>
+                {note.text}
               </p>
             ))}
           </div>

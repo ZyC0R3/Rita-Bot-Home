@@ -8,7 +8,7 @@ import { ThemeContext } from "@/hooks/theme-context";
 
 import Home from "@/pages/Home";
 import Partners from "@/pages/Partners";
-import Plans from "@/pages/Plans";
+import Compare from "@/pages/Plans";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
@@ -18,7 +18,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/partners" component={Partners} />
-      <Route path="/plans" component={Plans} />
+      <Route path="/compare" component={Compare} />
       <Route component={NotFound} />
     </Switch>
   );
