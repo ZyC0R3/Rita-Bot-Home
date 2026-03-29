@@ -1,6 +1,6 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Check, X, ExternalLink, MessageSquare, BookOpen, HeadphonesIcon } from "lucide-react";
+import { Check, X, ExternalLink, MessageSquare, BookOpen, HeadphonesIcon, Copy, CheckCheck } from "lucide-react";
 import { useState } from "react";
 
 const plans = [
@@ -52,6 +52,27 @@ const footnotes = [
 
 const INVITE_URL = "https://discord.com/oauth2/authorize?client_id=1028760535879131176&permissions=8&integration_type=0&scope=bot+applications.commands";
 
+function CopyButton({ text }: { text: string }) {
+  const [copied, setCopied] = useState(false);
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(text).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
+  };
+
+  return (
+    <button
+      onClick={handleCopy}
+      className="p-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted-foreground/10 transition-colors cursor-pointer"
+      title="Copy to clipboard"
+    >
+      {copied ? <CheckCheck className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
+    </button>
+  );
+}
+
 function TrialModal({ open, onClose }: { open: boolean; onClose: () => void }) {
   if (!open) return null;
 
@@ -99,10 +120,11 @@ function TrialModal({ open, onClose }: { open: boolean; onClose: () => void }) {
             <div className="flex-1">
               <h3 className="font-semibold text-foreground mb-2">Activate your Trial</h3>
               <p className="text-sm text-muted-foreground mb-2">Type the following command in any channel on Discord:</p>
-              <code className="inline-block px-4 py-2 bg-muted dark:bg-white/5 rounded-lg text-sm font-mono text-foreground border border-border/50 dark:border-white/10">
-                <MessageSquare className="w-4 h-4 inline mr-2 text-primary" />
-                !tr trial
-              </code>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-muted dark:bg-white/5 rounded-lg border border-border/50 dark:border-white/10">
+                <MessageSquare className="w-4 h-4 text-primary shrink-0" />
+                <code className="text-sm font-mono text-foreground">!tr trial</code>
+                <CopyButton text="!tr trial" />
+              </div>
             </div>
           </div>
 
