@@ -31,13 +31,14 @@ const lightLogoColors = [
 ];
 
 const navLinks = [
-  { name: "Home", href: import.meta.env.BASE_URL, newTab: false, homeOnly: false, hideOnHome: true },
-  { name: "Features", href: "#features", newTab: false, homeOnly: true, hideOnHome: false },
-  { name: "Pricing", href: "#pricing", newTab: false, homeOnly: true, hideOnHome: false },
-  { name: "Docs", href: "https://docs.ritabot.gg/ritabot-docs", newTab: false, homeOnly: false, hideOnHome: false },
-  { name: "Dashboard", href: "https://dashboard.ritabot.gg/", newTab: false, homeOnly: false, hideOnHome: false },
-  { name: "Support", href: "https://discord.com/invite/mgNR64R", newTab: true, homeOnly: false, hideOnHome: false },
-  { name: "Partners", href: `${import.meta.env.BASE_URL}partners`, newTab: false, homeOnly: false, hideOnHome: false },
+  { name: "Home", href: import.meta.env.BASE_URL, newTab: false, showOn: "non-home", hideOn: "" },
+  { name: "Features", href: "#features", newTab: false, showOn: "home", hideOn: "" },
+  { name: "Pricing", href: "#pricing", newTab: false, showOn: "home", hideOn: "" },
+  { name: "Plans", href: `${import.meta.env.BASE_URL}compare`, newTab: false, showOn: "non-home", hideOn: "/compare" },
+  { name: "Docs", href: "https://docs.ritabot.gg/ritabot-docs", newTab: false, showOn: "all", hideOn: "" },
+  { name: "Dashboard", href: "https://dashboard.ritabot.gg/", newTab: false, showOn: "all", hideOn: "" },
+  { name: "Support", href: "https://discord.com/invite/mgNR64R", newTab: true, showOn: "all", hideOn: "" },
+  { name: "Partners", href: `${import.meta.env.BASE_URL}partners`, newTab: false, showOn: "all", hideOn: "/partners" },
 ];
 
 export function Navbar() {
@@ -47,8 +48,9 @@ export function Navbar() {
   const [location] = useLocation();
   const isHome = location === "/" || location === "";
   const visibleLinks = navLinks.filter((link) => {
-    if (link.homeOnly && !isHome) return false;
-    if (link.hideOnHome && isHome) return false;
+    if (link.showOn === "home" && !isHome) return false;
+    if (link.showOn === "non-home" && isHome) return false;
+    if (link.hideOn && location === link.hideOn) return false;
     return true;
   });
 
