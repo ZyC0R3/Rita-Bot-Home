@@ -32,7 +32,7 @@ const features: FeatureRow[] = [
 ];
 
 const descriptions = [
-  "Let's see if RITA is right for you, take advantage of our TRIAL. Invite RITA to your server, Activate and Go. Limited to 1 TRIAL Per Server · Per User.",
+  "Let's see if RITA is right for you, take advantage of our TRIAL.\n\nInvite RITA to your server, Activate and Go. Limited to 1 TRIAL Per Server · Per User.",
   "Do you just need the odd sentence or post translated here and there. You can translate as much as you want but flag reaction only, meaning you need to add a flag emoji to each message to translate it.",
   "Do you just need something to get started with RITA? Are you running a small server? This should be sufficient for your needs, 100 tasks is a good place to start.",
   "Do you run a community server, or have a game focused server? Are you trying to coordinate between large groups? This plan is perfect for Medium-sized servers. 200 tasks gives you freedom to expand.",
@@ -95,7 +95,7 @@ export default function Plans() {
                       key={i}
                       className={`p-4 align-top text-center ${plans[i].highlighted ? "bg-primary/10" : ""}`}
                     >
-                      <p className="text-xs text-muted-foreground leading-relaxed">{desc}</p>
+                      <p className="text-xs text-muted-foreground leading-relaxed whitespace-pre-line">{desc}</p>
                     </td>
                   ))}
                 </tr>
