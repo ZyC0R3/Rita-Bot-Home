@@ -210,6 +210,7 @@ export default function Compare() {
                     >
                       <div className="text-xl font-display font-extrabold text-foreground">
                         {plan.price}
+                        {plan.name === "Trial" && <sup className="ml-0.5 text-primary text-[10px]">1</sup>}
                         {plan.period && <span className="text-sm font-medium text-muted-foreground">{plan.period}</span>}
                       </div>
                       <div className="text-xs text-muted-foreground mt-1">{plan.sub}</div>
