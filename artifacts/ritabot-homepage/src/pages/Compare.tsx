@@ -1,6 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { Check, X } from "lucide-react";
+import { Check, X, ExternalLink, MessageSquare, BookOpen, HeadphonesIcon } from "lucide-react";
+import { useState } from "react";
 
 const plans = [
   { name: "Trial", price: "FREE FOR 1 MONTH", sub: "or until limits have been reached.", period: "", highlighted: false },
@@ -24,10 +25,10 @@ const features: FeatureRow[] = [
   { feature: "Flag Reaction Translations", values: [true, true, true, true, true, true] },
   { feature: "Unlimited Translations", values: [true, true, true, true, true, true] },
   { feature: "Channel to Channel Translations (Tasks)", values: [true, false, true, true, true, true] },
-  { feature: "Edited Message Translations", sup: 1, values: [true, false, true, true, true, true] },
-  { feature: "Tasks Limit", sup: 2, values: ["25 Tasks", "—", "100 Tasks", "200 Tasks", "350 Tasks", "550 Tasks"] },
-  { feature: "Google Characters Limit", sup: 3, values: ["10k Characters", "100k Characters", "200k Characters", "400k Characters", "600k Characters", "800k Characters"] },
-  { feature: "Custom Translation Engine (ML)", sup: 4, values: ["10k Characters", "Unlimited", "Unlimited", "Unlimited", "Unlimited", "Unlimited"] },
+  { feature: "Edited Message Translations", sup: 2, values: [true, false, true, true, true, true] },
+  { feature: "Tasks Limit", sup: 3, values: ["25 Tasks", "—", "100 Tasks", "200 Tasks", "350 Tasks", "550 Tasks"] },
+  { feature: "Google Characters Limit", sup: 4, values: ["10k Characters", "100k Characters", "200k Characters", "400k Characters", "600k Characters", "800k Characters"] },
+  { feature: "Custom Translation Engine (ML)", sup: 5, values: ["10k Characters", "Unlimited", "Unlimited", "Unlimited", "Unlimited", "Unlimited"] },
   { feature: "Early Access to Dev Features", values: [false, false, false, false, true, true] },
   { feature: "BITA Bot Access", values: [false, false, false, false, false, "BITA for 1 Server"] },
 ];
@@ -42,11 +43,108 @@ const descriptions = [
 ];
 
 const footnotes = [
-  { num: 1, text: "Edited messages will always utilise our ML Engine for translations, regardless if google soft limits are reached or not." },
-  { num: 2, text: "A task is a singular channel setup for automatic channel translation. For example; 1 channel translating from english to french counts as 1 task, if you wanted to create an interchangeable setup of 10 channels (10 languages which are all connected); it would be 10 × (10-1) tasks so 90 tasks overall." },
-  { num: 3, text: "Each plan has a Soft Limit on the number of Google Characters they are assigned for the Google Translation API. This soft limit comes into effect for all translations. Once a user hits the assigned limit, translations will fall back to our Machine Learning (ML) Translation Engine. However, if our ML Engine is not trained in the target language or its confidence is not suitable for translation then it will continue to use the Google Translation API for translation. There is no Hard Limit on the number of Characters that a user can use on the Google API however after 2 Million a review may be conducted to ensure there is no abuse of service." },
-  { num: 4, text: "A Hard limit for 30 Million Characters is applied to our ML Translation Engine. Once a user has reached this limit a Review of service will be conducted to ensure there is no abuse of service, this is not restriction from the service and is only intended to ensure service can be maintained." },
+  { num: 1, text: "The TRIAL will allow a user to try RITA for a period of one (1) month, or until limits have been reached, whichever comes first. Servers are limited to 1 TRIAL Per Server \u00b7 Per User. Once Limit has been reached RITA will stop functioning for translations. Users do not need to be a Member of the RMS (RITA Management Server) to use the TRIAL." },
+  { num: 2, text: "Edited messages will always utilise our ML Engine for translations, regardless if google soft limits are reached or not." },
+  { num: 3, text: "A task is a singular channel setup for automatic channel translation. For example; 1 channel translating from english to french counts as 1 task, if you wanted to create an interchangeable setup of 10 channels (10 languages which are all connected); it would be 10 \u00d7 (10-1) tasks so 90 tasks overall." },
+  { num: 4, text: "Each plan has a Soft Limit on the number of Google Characters they are assigned for the Google Translation API. This soft limit comes into effect for all translations. Once a user hits the assigned limit, translations will fall back to our Machine Learning (ML) Translation Engine. However, if our ML Engine is not trained in the target language or its confidence is not suitable for translation then it will continue to use the Google Translation API for translation. There is no Hard Limit on the number of Characters that a user can use on the Google API however after 2 Million a review may be conducted to ensure there is no abuse of service." },
+  { num: 5, text: "A Hard limit for 30 Million Characters is applied to our ML Translation Engine. Once a user has reached this limit a Review of service will be conducted to ensure there is no abuse of service, this is not restriction from the service and is only intended to ensure service can be maintained." },
 ];
+
+const INVITE_URL = "https://discord.com/oauth2/authorize?client_id=1028760535879131176&permissions=8&integration_type=0&scope=bot+applications.commands";
+
+function TrialModal({ open, onClose }: { open: boolean; onClose: () => void }) {
+  if (!open) return null;
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4" onClick={onClose}>
+      <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+      <div
+        className="relative w-full max-w-lg bg-card border border-border/50 dark:border-white/10 rounded-3xl p-8 md:p-10 shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <button
+          onClick={onClose}
+          className="absolute top-4 right-4 text-muted-foreground hover:text-foreground transition-colors text-xl leading-none p-1"
+        >
+          &times;
+        </button>
+
+        <h2 className="text-2xl font-display font-bold text-foreground mb-8 text-center">
+          Get Started with RITA Trial
+        </h2>
+
+        <div className="space-y-6">
+          <div className="flex gap-4">
+            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-sm flex items-center justify-center">
+              1
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-foreground mb-2">Invite RITA to your server</h3>
+              <a
+                href={INVITE_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-xl font-bold text-sm hover:bg-primary/90 transition-all duration-200 shadow-lg shadow-primary/25"
+              >
+                <ExternalLink className="w-4 h-4" />
+                Invite RITA
+              </a>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-primary/10 text-primary font-bold text-sm flex items-center justify-center">
+              2
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-foreground mb-2">Activate your Trial</h3>
+              <p className="text-sm text-muted-foreground mb-2">Type the following command in any channel on Discord:</p>
+              <code className="inline-block px-4 py-2 bg-muted dark:bg-white/5 rounded-lg text-sm font-mono text-foreground border border-border/50 dark:border-white/10">
+                <MessageSquare className="w-4 h-4 inline mr-2 text-primary" />
+                !tr trial
+              </code>
+            </div>
+          </div>
+
+          <div className="flex gap-4">
+            <div className="flex-shrink-0 w-8 h-8 rounded-full bg-green-500/10 text-green-500 font-bold text-sm flex items-center justify-center">
+              &#10003;
+            </div>
+            <div className="flex-1">
+              <h3 className="font-semibold text-foreground">That's it, you're all set!</h3>
+            </div>
+          </div>
+        </div>
+
+        <div className="mt-8 pt-6 border-t border-border/50 dark:border-white/10">
+          <p className="text-sm text-muted-foreground text-center mb-4">
+            Need help getting started or want to learn more?
+          </p>
+          <div className="flex gap-3 justify-center">
+            <a
+              href="https://ritabot.gg/invite"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-200 dark:bg-white/5 text-foreground rounded-xl font-bold text-sm hover:bg-zinc-300 dark:hover:bg-white/10 transition-all duration-200"
+            >
+              <HeadphonesIcon className="w-4 h-4" />
+              Support
+            </a>
+            <a
+              href="https://ritabot.gg/docs"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-5 py-2.5 bg-zinc-200 dark:bg-white/5 text-foreground rounded-xl font-bold text-sm hover:bg-zinc-300 dark:hover:bg-white/10 transition-all duration-200"
+            >
+              <BookOpen className="w-4 h-4" />
+              Docs
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 function CellContent({ value }: { value: CellValue }) {
   if (value === true) return <Check className="w-5 h-5 text-green-500 mx-auto" />;
@@ -55,6 +153,8 @@ function CellContent({ value }: { value: CellValue }) {
 }
 
 export default function Compare() {
+  const [trialModalOpen, setTrialModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-background text-foreground flex flex-col selection:bg-primary/30 selection:text-primary-foreground">
       <Navbar />
@@ -143,16 +243,25 @@ export default function Compare() {
                   <td className="p-4"></td>
                   {plans.map((plan) => (
                     <td key={plan.name} className={`p-4 text-center ${plan.highlighted ? "bg-primary/10 rounded-b-2xl" : ""}`}>
-                      <a
-                        href="https://dashboard.ritabot.gg"
-                        className={`inline-block w-full py-3 rounded-xl font-bold text-sm text-center transition-all duration-200 ${
-                          plan.highlighted
-                            ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
-                            : "bg-zinc-200 dark:bg-white/5 text-foreground hover:bg-zinc-300 dark:hover:bg-white/10"
-                        }`}
-                      >
-                        Get {plan.name}
-                      </a>
+                      {plan.name === "Trial" ? (
+                        <button
+                          onClick={() => setTrialModalOpen(true)}
+                          className="inline-block w-full py-3 rounded-xl font-bold text-sm text-center transition-all duration-200 bg-zinc-200 dark:bg-white/5 text-foreground hover:bg-zinc-300 dark:hover:bg-white/10 cursor-pointer"
+                        >
+                          Get Trial
+                        </button>
+                      ) : (
+                        <a
+                          href="https://dashboard.ritabot.gg"
+                          className={`inline-block w-full py-3 rounded-xl font-bold text-sm text-center transition-all duration-200 ${
+                            plan.highlighted
+                              ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"
+                              : "bg-zinc-200 dark:bg-white/5 text-foreground hover:bg-zinc-300 dark:hover:bg-white/10"
+                          }`}
+                        >
+                          Get {plan.name}
+                        </a>
+                      )}
                     </td>
                   ))}
                 </tr>
@@ -172,6 +281,7 @@ export default function Compare() {
       </main>
 
       <Footer />
+      <TrialModal open={trialModalOpen} onClose={() => setTrialModalOpen(false)} />
     </div>
   );
 }
