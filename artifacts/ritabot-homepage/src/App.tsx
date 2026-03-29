@@ -8,7 +8,7 @@ import { ThemeContext } from "@/hooks/theme-context";
 
 import Home from "@/pages/Home";
 import Partners from "@/pages/Partners";
-import Compare from "@/pages/Plans";
+import Compare from "@/pages/Compare";
 import NotFound from "@/pages/not-found";
 
 const queryClient = new QueryClient();
