@@ -24,9 +24,6 @@ export function Footer() {
           <a href="https://discord.com/invite/yQg3MtHnm5" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Support Server
           </a>
-          <a href="https://ritabot.gg/invite" target="_blank" rel="noopener noreferrer" className="text-sm font-medium text-primary hover:text-primary/80 transition-colors">
-            Invite Bot
-          </a>
           <a href={`${import.meta.env.BASE_URL}partners`} className="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
             Partners
           </a>

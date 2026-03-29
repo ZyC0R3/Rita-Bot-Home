@@ -37,6 +37,7 @@ const navLinks = [
   { name: "Docs", href: "https://docs.ritabot.gg/ritabot-docs", newTab: false, homeOnly: false, hideOnHome: false },
   { name: "Dashboard", href: "https://dashboard.ritabot.gg/", newTab: false, homeOnly: false, hideOnHome: false },
   { name: "Support", href: "https://discord.com/invite/mgNR64R", newTab: true, homeOnly: false, hideOnHome: false },
+  { name: "Partners", href: `${import.meta.env.BASE_URL}partners`, newTab: false, homeOnly: false, hideOnHome: false },
 ];
 
 export function Navbar() {
