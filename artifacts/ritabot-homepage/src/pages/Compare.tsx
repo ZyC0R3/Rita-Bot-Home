@@ -4,11 +4,11 @@ import { Check, X } from "lucide-react";
 
 const plans = [
   { name: "Trial", price: "FREE FOR 1 MONTH", sub: "or until limits have been reached.", period: "", highlighted: false },
-  { name: "Reaction", price: "$2.99", sub: "Charged on 1st of each month", period: "/mo", highlighted: false },
-  { name: "Casual", price: "$6.99", sub: "Charged on 1st of each month", period: "/mo", highlighted: false },
-  { name: "Tinkerer", price: "$10.99", sub: "Charged on 1st of each month", period: "/mo", highlighted: false },
-  { name: "Pro", price: "$15.99", sub: "Charged on 1st of each month", period: "/mo", highlighted: true },
-  { name: "Ultima", price: "$21.99", sub: "Charged on 1st of each month", period: "/mo", highlighted: false },
+  { name: "Reaction", price: "$2.99", sub: "Renews monthly until cancelled", period: "/mo", highlighted: false },
+  { name: "Casual", price: "$6.99", sub: "Renews monthly until cancelled", period: "/mo", highlighted: false },
+  { name: "Tinkerer", price: "$10.99", sub: "Renews monthly until cancelled", period: "/mo", highlighted: false },
+  { name: "Pro", price: "$15.99", sub: "Renews monthly until cancelled", period: "/mo", highlighted: true },
+  { name: "Ultima", price: "$21.99", sub: "Renews monthly until cancelled", period: "/mo", highlighted: false },
 ];
 
 type CellValue = boolean | string;
