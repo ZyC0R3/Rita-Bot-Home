@@ -23,7 +23,7 @@ const features: FeatureRow[] = [
   { feature: "Unlimited Translations", values: [true, true, true, true, true, true] },
   { feature: "Channel to Channel Translations (Tasks)", values: [true, false, true, true, true, true] },
   { feature: "Edited Message Translations", sup: 2, values: [true, false, true, true, true, true] },
-  { feature: "Tasks Limit", sup: 3, values: ["25 Tasks", "—", "100 Tasks", "200 Tasks", "350 Tasks", "550 Tasks"] },
+  { feature: "Tasks Limit", sup: 3, values: ["25 Tasks", "\u2014", "100 Tasks", "200 Tasks", "350 Tasks", "550 Tasks"] },
   { feature: "Google Characters Limit", sup: 4, values: ["10k Characters", "100k Characters", "200k Characters", "400k Characters", "600k Characters", "800k Characters"] },
   { feature: "Custom Translation Engine (ML)", sup: 5, values: ["10k Characters", "Unlimited", "Unlimited", "Unlimited", "Unlimited", "Unlimited"] },
   { feature: "Early Access to Dev Features", values: [false, false, false, false, true, true] },
@@ -31,12 +31,20 @@ const features: FeatureRow[] = [
 ];
 
 const descriptions = [
-  "Let's see if RITA is right for you, take advantage of our TRIAL. Invite RITA to your server, Activate and Go.",
-  "Translate as much as you want but flag reaction only — add a flag emoji to each message to translate it.",
-  "Running a small server? 100 tasks is a good place to start with RITA.",
-  "Perfect for medium-sized servers. 200 tasks gives you freedom to expand.",
-  "350 tasks — have multiple large groups all translating to each other in real-time.",
-  "Our highest plan: 550 tasks, and BITA Access for 1 additional server.",
+  "Let's see if RITA is right for you, take advantage of our TRIAL.\n\nInvite RITA to your server, Activate and Go.",
+  "Do you just need the odd sentence or post translated here and there. You can translate as much as you want but flag reaction only, meaning you need to add a flag emoji to each message to translate it.",
+  "Do you just need something to get started with RITA? Are you running a small server? This should be sufficient for your needs, 100 tasks is a good place to start.",
+  "Do you run a community server, or have a game focused server? Are you trying to coordinate between large groups? This plan is perfect for Medium-sized servers. 200 tasks gives you freedom to expand.",
+  "Do you run a large community or game server? Then this is perfect for you. 350 tasks will give you the ability to have multiple large groups all translating to each other in real-time.",
+  "Our \"ultima\" Plan is our highest plan we offer, with 550 tasks, and BITA Access for 1 Additional servers. Allowing you to coordinate and translate the even the largest servers going.",
+];
+
+const footnotes = [
+  { num: 1, text: "The TRIAL will allow a user to try RITA for a period of one (1) month, or until limits have been reached, whichever comes first. Servers are limited to 1 TRIAL Per Server \u00b7 Per User. Once Limit has been reached RITA will stop functioning for translations. Users do not need to be a Member of the RMS (RITA Management Server) to use the TRIAL." },
+  { num: 2, text: "Edited messages will always utilise our ML Engine for translations, regardless if google soft limits are reached or not." },
+  { num: 3, text: "A task is a singular channel setup for automatic channel translation. For example; 1 channel translating from english to french counts as 1 task, if you wanted to create an interchangeable setup of 10 channels (10 languages which are all connected); it would be 10 \u00d7 (10-1) tasks so 90 tasks overall." },
+  { num: 4, text: "Each plan has a Soft Limit on the number of Google Characters they are assigned for the Google Translation API. This soft limit comes into effect for all translations. Once a user hits the assigned limit, translations will fall back to our Machine Learning (ML) Translation Engine. However, if our ML Engine is not trained in the target language or its confidence is not suitable for translation then it will continue to use the Google Translation API for translation. There is no Hard Limit on the number of Characters that a user can use on the Google API however after 2 Million a review may be conducted to ensure there is no abuse of service." },
+  { num: 5, text: "A Hard limit for 30 Million Characters is applied to our ML Translation Engine. Once a user has reached this limit a Review of service will be conducted to ensure there is no abuse of service, this is not restriction from the service and is only intended to ensure service can be maintained." },
 ];
 
 function CheckIcon() {
@@ -102,7 +110,7 @@ export function SwipeableTabs() {
             )}
           </div>
 
-          <p className="text-xs text-zinc-500 mb-4">{descriptions[activeTab]}</p>
+          <p className="text-xs text-zinc-500 mb-4 whitespace-pre-line">{descriptions[activeTab]}</p>
 
           <div className="mb-5">
             <span className="text-3xl font-extrabold text-zinc-100">
@@ -171,6 +179,15 @@ export function SwipeableTabs() {
           >
             Next →
           </button>
+        </div>
+
+        <div className="mt-6 space-y-3 bg-white/[0.02] border border-white/5 rounded-2xl p-5">
+          {footnotes.map((note) => (
+            <p key={note.num} className="text-[11px] text-zinc-500 leading-relaxed">
+              <sup className="text-cyan-400 text-[8px] mr-1">{note.num}</sup>
+              {note.text}
+            </p>
+          ))}
         </div>
       </div>
     </div>
