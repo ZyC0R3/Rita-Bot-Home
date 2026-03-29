@@ -1,5 +1,6 @@
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { useState, useEffect, useMemo, useContext } from "react";
+import { useLocation } from "wouter";
 import RitaLogo from "@/assets/logo.svg?react";
 import { ThemeContext } from "@/hooks/theme-context";
 
@@ -30,17 +31,20 @@ const lightLogoColors = [
 ];
 
 const navLinks = [
-  { name: "Features", href: "#features", newTab: false },
-  { name: "Pricing", href: "#pricing", newTab: false },
-  { name: "Docs", href: "https://docs.ritabot.gg/ritabot-docs", newTab: false },
-  { name: "Dashboard", href: "https://dashboard.ritabot.gg/", newTab: false },
-  { name: "Support", href: "https://discord.com/invite/mgNR64R", newTab: true },
+  { name: "Features", href: "#features", newTab: false, homeOnly: true },
+  { name: "Pricing", href: "#pricing", newTab: false, homeOnly: true },
+  { name: "Docs", href: "https://docs.ritabot.gg/ritabot-docs", newTab: false, homeOnly: false },
+  { name: "Dashboard", href: "https://dashboard.ritabot.gg/", newTab: false, homeOnly: false },
+  { name: "Support", href: "https://discord.com/invite/mgNR64R", newTab: true, homeOnly: false },
 ];
 
 export function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isDark, toggleTheme } = useContext(ThemeContext);
+  const [location] = useLocation();
+  const isHome = location === "/" || location === "";
+  const visibleLinks = navLinks.filter((link) => !link.homeOnly || isHome);
 
   const logoColorIndex = useMemo(
     () => Math.floor(Math.random() * darkLogoColors.length),
@@ -78,7 +82,7 @@ export function Navbar() {
           </div>
 
           <nav className="hidden md:flex items-center gap-8">
-            {navLinks.map((link) => (
+            {visibleLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
@@ -129,7 +133,7 @@ export function Navbar() {
       {mobileMenuOpen && (
         <div className="md:hidden bg-card border-b border-border shadow-xl absolute w-full">
           <div className="px-4 pt-2 pb-6 space-y-1">
-            {navLinks.map((link) => (
+            {visibleLinks.map((link) => (
               <a
                 key={link.name}
                 href={link.href}
