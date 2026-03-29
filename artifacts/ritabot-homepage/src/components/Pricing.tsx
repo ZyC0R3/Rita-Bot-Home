@@ -90,13 +90,13 @@ export function Pricing() {
           </p>
         </div>
 
-        <div className="flex flex-wrap justify-center gap-6 lg:gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
           {displayPlans.map((plan) => (
             <div 
               key={plan.name}
-              className={`relative flex flex-col w-full md:w-[calc(50%-12px)] lg:w-[calc(33.333%-22px)] rounded-3xl p-8 transition-all duration-300 ${
+              className={`relative flex flex-col rounded-3xl p-8 transition-all duration-300 ${
                 plan.highlighted 
-                  ? "bg-secondary border-2 border-primary shadow-[0_0_30px_rgba(88,101,242,0.15)] transform md:-translate-y-4 z-10" 
+                  ? "bg-secondary border-2 border-primary shadow-[0_0_30px_rgba(88,101,242,0.15)] z-10" 
                   : "bg-card border border-border/50 dark:border-white/10 hover:border-border dark:hover:border-white/20"
               }`}
             >
