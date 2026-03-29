@@ -253,6 +253,8 @@ export default function Compare() {
                       ) : (
                         <a
                           href="https://dashboard.ritabot.gg"
+                          target="_blank"
+                          rel="noopener noreferrer"
                           className={`inline-block w-full py-3 rounded-xl font-bold text-sm text-center transition-all duration-200 ${
                             plan.highlighted
                               ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25"

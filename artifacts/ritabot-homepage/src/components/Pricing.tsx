@@ -132,6 +132,8 @@ export function Pricing() {
               
               <a 
                 href="https://dashboard.ritabot.gg"
+                target="_blank"
+                rel="noopener noreferrer"
                 className={`w-full py-3.5 rounded-xl font-bold text-sm text-center transition-all duration-200 mt-auto ${
                   plan.highlighted
                     ? "bg-primary text-primary-foreground hover:bg-primary/90 shadow-lg shadow-primary/25 hover:shadow-primary/40"
