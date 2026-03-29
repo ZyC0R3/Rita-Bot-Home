@@ -31,11 +31,12 @@ const lightLogoColors = [
 ];
 
 const navLinks = [
-  { name: "Features", href: "#features", newTab: false, homeOnly: true },
-  { name: "Pricing", href: "#pricing", newTab: false, homeOnly: true },
-  { name: "Docs", href: "https://docs.ritabot.gg/ritabot-docs", newTab: false, homeOnly: false },
-  { name: "Dashboard", href: "https://dashboard.ritabot.gg/", newTab: false, homeOnly: false },
-  { name: "Support", href: "https://discord.com/invite/mgNR64R", newTab: true, homeOnly: false },
+  { name: "Home", href: import.meta.env.BASE_URL, newTab: false, homeOnly: false, hideOnHome: true },
+  { name: "Features", href: "#features", newTab: false, homeOnly: true, hideOnHome: false },
+  { name: "Pricing", href: "#pricing", newTab: false, homeOnly: true, hideOnHome: false },
+  { name: "Docs", href: "https://docs.ritabot.gg/ritabot-docs", newTab: false, homeOnly: false, hideOnHome: false },
+  { name: "Dashboard", href: "https://dashboard.ritabot.gg/", newTab: false, homeOnly: false, hideOnHome: false },
+  { name: "Support", href: "https://discord.com/invite/mgNR64R", newTab: true, homeOnly: false, hideOnHome: false },
 ];
 
 export function Navbar() {
@@ -44,7 +45,11 @@ export function Navbar() {
   const { isDark, toggleTheme } = useContext(ThemeContext);
   const [location] = useLocation();
   const isHome = location === "/" || location === "";
-  const visibleLinks = navLinks.filter((link) => !link.homeOnly || isHome);
+  const visibleLinks = navLinks.filter((link) => {
+    if (link.homeOnly && !isHome) return false;
+    if (link.hideOnHome && isHome) return false;
+    return true;
+  });
 
   const logoColorIndex = useMemo(
     () => Math.floor(Math.random() * darkLogoColors.length),
@@ -70,7 +75,7 @@ export function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          <div className="flex-shrink-0 flex items-center gap-3">
+          <a href={import.meta.env.BASE_URL} className="flex-shrink-0 flex items-center gap-3 no-underline">
             <RitaLogo
               aria-label="RitaBot Logo"
               className="w-10 h-10"
@@ -79,7 +84,7 @@ export function Navbar() {
             <span className="font-display font-bold text-2xl tracking-tight text-foreground">
               RitaBot
             </span>
-          </div>
+          </a>
 
           <nav className="hidden md:flex items-center gap-8">
             {visibleLinks.map((link) => (
