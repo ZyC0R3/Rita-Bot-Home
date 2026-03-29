@@ -34,7 +34,7 @@ const navLinks = [
   { name: "Home", href: import.meta.env.BASE_URL, newTab: false, showOn: "non-home", hideOn: "" },
   { name: "Features", href: "#features", newTab: false, showOn: "home", hideOn: "" },
   { name: "Pricing", href: "#pricing", newTab: false, showOn: "home", hideOn: "" },
-  { name: "Plans", href: `${import.meta.env.BASE_URL}compare`, newTab: false, showOn: "non-home", hideOn: "/compare" },
+  { name: "Pricing", href: `${import.meta.env.BASE_URL}compare`, newTab: false, showOn: "non-home", hideOn: "/compare" },
   { name: "Docs", href: "https://docs.ritabot.gg/ritabot-docs", newTab: false, showOn: "all", hideOn: "" },
   { name: "Dashboard", href: "https://dashboard.ritabot.gg/", newTab: false, showOn: "all", hideOn: "" },
   { name: "Support", href: "https://discord.com/invite/mgNR64R", newTab: true, showOn: "all", hideOn: "" },
