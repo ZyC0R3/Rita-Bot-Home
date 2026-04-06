@@ -1,34 +1,9 @@
 import { Menu, X, Sun, Moon } from "lucide-react";
-import { useState, useEffect, useMemo, useContext } from "react";
+import { useState, useEffect, useContext } from "react";
 import { useLocation } from "wouter";
-import RitaLogo from "@/assets/logo.svg?react";
 import { ThemeContext } from "@/hooks/theme-context";
 
-const darkLogoColors = [
-  "#5865F2",
-  "#57F287",
-  "#FEE75C",
-  "#EB459E",
-  "#ED4245",
-  "#00AFF4",
-  "#FF7043",
-  "#AB47BC",
-  "#26C6DA",
-  "#FFFFFF",
-];
-
-const lightLogoColors = [
-  "#4752C4",
-  "#248046",
-  "#B58B00",
-  "#C4358C",
-  "#C83C3E",
-  "#0084BD",
-  "#D84E15",
-  "#7B2D8E",
-  "#0E8A94",
-  "#1A1A2E",
-];
+const animatedLogoUrl = `${import.meta.env.BASE_URL}images/rita_logo_animated.svg`;
 
 const navLinks = [
   { name: "Home", href: import.meta.env.BASE_URL, newTab: false, showOn: "non-home", hideOn: "" },
@@ -54,14 +29,6 @@ export function Navbar() {
     return true;
   });
 
-  const logoColorIndex = useMemo(
-    () => Math.floor(Math.random() * darkLogoColors.length),
-    [],
-  );
-  const logoColor = isDark
-    ? darkLogoColors[logoColorIndex]
-    : lightLogoColors[logoColorIndex];
-
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
     window.addEventListener("scroll", handleScroll);
@@ -79,10 +46,10 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
           <a href={import.meta.env.BASE_URL} className="flex-shrink-0 flex items-center gap-3 no-underline">
-            <RitaLogo
-              aria-label="RitaBot Logo"
+            <img
+              src={animatedLogoUrl}
+              alt="RitaBot Logo"
               className="w-10 h-10"
-              style={{ color: logoColor }}
             />
             <span className="font-display font-bold text-2xl tracking-tight text-foreground">
               RitaBot
