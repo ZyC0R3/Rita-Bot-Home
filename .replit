@@ -24,3 +24,9 @@ expertMode = true
 [postMerge]
 path = "scripts/post-merge.sh"
 timeoutMs = 20000
+
+[userenv]
+
+[userenv.shared]
+ML_SERVER = "https://translate.ritabot.gg"
+ML_API_KEY = "laeu138acsg-A7dns-as8"
