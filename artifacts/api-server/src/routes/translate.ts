@@ -55,6 +55,22 @@ function validateBody(body: Record<string, unknown>): { text: string; source: st
   return { text: text.trim(), source, target };
 }
 
+interface FetchResponse {
+  ok: boolean;
+  status: number;
+  text(): Promise<string>;
+  json(): Promise<unknown>;
+}
+
+async function httpPost(url: string, headers: Record<string, string>, body: string): Promise<FetchResponse> {
+  const res = await globalThis.fetch(url, {
+    method: "POST",
+    headers,
+    body,
+  });
+  return res as unknown as FetchResponse;
+}
+
 router.post("/translate/google", async (req: Request, res: ExpressResponse) => {
   const ip = getClientIp(req);
   if (!checkServerRateLimit(ip)) {
@@ -76,17 +92,14 @@ router.post("/translate/google", async (req: Request, res: ExpressResponse) => {
   }
 
   try {
-    const response = await fetch(
+    const response = await httpPost(
       `https://translation.googleapis.com/language/translate/v2?key=${apiKey}`,
-      {
-        method: "POST",
-        headers: { "Content-Type": "application/json; charset=utf-8" },
-        body: JSON.stringify({
-          q: [validation.text],
-          source: validation.source,
-          target: validation.target,
-        }),
-      }
+      { "Content-Type": "application/json; charset=utf-8" },
+      JSON.stringify({
+        q: [validation.text],
+        source: validation.source,
+        target: validation.target,
+      })
     );
 
     if (!response.ok) {
@@ -135,18 +148,18 @@ router.post("/translate/deepl", async (req: Request, res: ExpressResponse) => {
   }
 
   try {
-    const response = await fetch("https://api.deepl.com/v2/translate", {
-      method: "POST",
-      headers: {
+    const response = await httpPost(
+      "https://api.deepl.com/v2/translate",
+      {
         "Authorization": `DeepL-Auth-Key ${apiKey}`,
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({
+      JSON.stringify({
         text: [validation.text],
         source_lang: validation.source,
         target_lang: validation.target,
-      }),
-    });
+      })
+    );
 
     if (!response.ok) {
       const errorBody = await response.text();
