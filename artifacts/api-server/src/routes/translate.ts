@@ -1,4 +1,4 @@
-import { Router, type Request, type Response } from "express";
+import { Router, type Request, type Response as ExpressResponse } from "express";
 import { logger } from "../lib/logger";
 
 const router = Router();
@@ -55,7 +55,7 @@ function validateBody(body: Record<string, unknown>): { text: string; source: st
   return { text: text.trim(), source, target };
 }
 
-router.post("/translate/google", async (req: Request, res: Response) => {
+router.post("/translate/google", async (req: Request, res: ExpressResponse) => {
   const ip = getClientIp(req);
   if (!checkServerRateLimit(ip)) {
     res.status(429).json({ error: "Rate limit exceeded. Please try again later." });
@@ -114,7 +114,7 @@ router.post("/translate/google", async (req: Request, res: Response) => {
   }
 });
 
-router.post("/translate/deepl", async (req: Request, res: Response) => {
+router.post("/translate/deepl", async (req: Request, res: ExpressResponse) => {
   const ip = getClientIp(req);
   if (!checkServerRateLimit(ip)) {
     res.status(429).json({ error: "Rate limit exceeded. Please try again later." });
