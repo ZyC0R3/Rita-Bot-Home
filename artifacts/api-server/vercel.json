@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "installCommand": "echo 'no dependencies needed'",
+  "installCommand": "npm install --legacy-peer-deps",
   "buildCommand": "echo 'no build needed'",
   "outputDirectory": ".",
   "headers": [
