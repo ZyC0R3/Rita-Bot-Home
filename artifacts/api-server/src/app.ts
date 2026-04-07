@@ -25,7 +25,15 @@ app.use(
     },
   }),
 );
-app.use(cors());
+app.use(cors({
+  origin: [
+    "https://ritabot.gg",
+    "https://www.ritabot.gg",
+    /\.replit\.dev$/,
+    /\.worf\.replit\.dev$/,
+    /localhost/,
+  ],
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
