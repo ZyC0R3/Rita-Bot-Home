@@ -10,27 +10,23 @@ const MAX_CHARS = 200;
 // Each function should accept source text (and language params)
 // and return the translated string.
 //
-// Environment secrets to configure:
-//   GOOGLE_API_KEY  – Google Cloud Translation API key
-//   ML_API_KEY      – In-house ML engine API key
-//   DEEPL_API_KEY   – DeepL API key
+// API keys (GOOGLE_API_KEY, ML_API_KEY, DEEPL_API_KEY) should be
+// kept server-side behind a backend proxy to avoid exposing them
+// in the client bundle. These stubs will call the proxy endpoints.
 // ────────────────────────────────────────────────────────────────────
 
 async function translateWithGoogle(_text: string): Promise<string> {
-  // TODO: Implement Google Translate API call
-  // const apiKey = import.meta.env.VITE_GOOGLE_API_KEY;
+  // TODO: Call backend proxy endpoint for Google Translate
   return "Google translation will appear here";
 }
 
 async function translateWithML(_text: string): Promise<string> {
-  // TODO: Implement ML Engine API call
-  // const apiKey = import.meta.env.VITE_ML_API_KEY;
+  // TODO: Call backend proxy endpoint for ML Engine
   return "ML translation will appear here";
 }
 
 async function translateWithDeepL(_text: string): Promise<string> {
-  // TODO: Implement DeepL API call
-  // const apiKey = import.meta.env.VITE_DEEPL_API_KEY;
+  // TODO: Call backend proxy endpoint for DeepL
   return "DeepL translation will appear here";
 }
 
@@ -126,12 +122,11 @@ export default function Engines() {
     const newOutputs: Record<string, string> = {};
     const newLoading: Record<string, boolean> = { google: false, ml: false, deepl: false };
 
-    results.forEach((res) => {
+    results.forEach((res, i) => {
       if (res.status === "fulfilled") {
         newOutputs[res.value.id] = res.value.result;
       } else {
-        const id = engines[results.indexOf(res)]?.id || "";
-        newOutputs[id] = "Translation failed. Please try again.";
+        newOutputs[engines[i].id] = "Translation failed. Please try again.";
       }
     });
 
