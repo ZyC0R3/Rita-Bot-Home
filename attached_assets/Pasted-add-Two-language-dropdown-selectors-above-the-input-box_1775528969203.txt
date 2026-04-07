@@ -1,0 +1,79 @@
+add Two language dropdown selectors above the input box.
+
+The languages you can pick from are
+English
+German
+French
+Spanish
+Chinese (Simplified)
+Chinese (Traditional)
+Russian
+Italian
+Portuguese
+Romanian
+Japanese
+Korean
+Vietnamese
+Indonesian
+Bulgarian
+Czech
+
+The box on the left will be language from
+the box on the right will be languag to
+
+Make sure when you pick a language you cant pick the same language in both boxes, also have a flip or reverse or swap button in the middle of the drop-downs to quickley swap the languages selected, EG you picked English and German, you click the swap button and now its german and english.
+
+Or somthing similar if you can think of a better design style
+
+Each one of these use the ISO standard language code ISO 639-1
+'en','es','ru','ja','fr','it','ro','pt','zh-CN','zh-TW','ko','vi','id','bg','uk','cs','sr'
+
+If there is a langauge code above i have not added ot the list, dont add it.
+
+Google API takes
+Chinese (Simplified) as "ZH-CN" for both source and target langauge
+Chinese (Traditional) as "ZH-TW" for both source and target langauge
+
+DeepL takes
+English as "en-gb" for target and "en" for source
+Chinese (Simplified) as "ZH-HANS" for target langauge and "ZH" for Source langauge
+Chinese (Traditional) as "ZH-HANT" for target langauge and "ZH" for Source langauge
+
+These langauge codes are going to be used by the API's during transaltion, so make sure they are store somwhere where they can be accessed by the engines page.
+
+Here is the CURL URL for Google
+
+curl -X POST
+-H "Content-Type: application/json; charset=utf-8"
+-d '{
+"q": ["The old lighthouse stood on the edge of the cliff."],
+"target": "es",
+"model": "projects/PROJECT_ID/locations/REGION_NAME/models/general/translation-llm"
+}'
+"https://translation.googleapis.com/language/translate/v2?key=YOUR_API_KEY"
+
+And here is the CURL URL for DeepL
+
+POST /v2/translate HTTP/2
+Host: api.deepl.com
+Authorization: DeepL-Auth-Key [yourAuthKey]
+User-Agent: YourApp/1.2.3
+Content-Length: 45
+Content-Type: application/json
+
+{"text":["Hello, world!"],"target_lang":"DE"}
+
+I dont have the details yet for ML
+
+The API key for DeepL is '6b3e4177-f7f4-43c4-afa1-0aaf6499c699'
+The API key for Google is
+
+MAKE SURE THESE API KEYS ARE NOT EXPOSED TO THE END USER IN ANY WAY.
+So if they need to be a secret or enviroment variable and store somwhere else then let me know
+
+Remember this is going to be hosted on github pages, so everything has to be compatiable with that.
+
+As a protection, put a limit on the number of transaltions the user can perform, only allow one transaltion per 30 seconds, and 5 transaltions per 12 hour period.
+
+If you get no responce form the API's, put the following text in the output boxes
+"Unable to compelte translation request, this is not because RITA is down, this is a API endpoint issue and only effect this website. We are working to fix it." (Correct the spelling if you need to, and make it gramtiaclly correct, but make sure you keep the core message)
