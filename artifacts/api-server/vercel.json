@@ -1,13 +1,16 @@
 {
   "version": 2,
-  "installCommand": "npm install",
-  "builds": [
+  "headers": [
     {
-      "src": "api/index.ts",
-      "use": "@vercel/node@3.2.0"
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type" }
+      ]
     }
   ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/api/index.ts" }
+  "rewrites": [
+    { "source": "/", "destination": "/api/healthz" }
   ]
 }
