@@ -1,6 +1,7 @@
 {
   "version": 2,
   "installCommand": "echo 'no dependencies needed'",
+  "buildCommand": "echo 'no build needed'",
   "headers": [
     {
       "source": "/api/(.*)",
