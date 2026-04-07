@@ -32,7 +32,7 @@ jobs:
           version: 10
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build homepage
         run: pnpm --filter @workspace/ritabot-homepage run build
